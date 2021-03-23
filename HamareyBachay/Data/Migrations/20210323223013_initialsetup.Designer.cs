@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HamareyBachay.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210319175532_intialsetup")]
-    partial class intialsetup
+    [Migration("20210323223013_initialsetup")]
+    partial class initialsetup
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,25 +23,25 @@ namespace HamareyBachay.Data.Migrations
 
             modelBuilder.Entity("HamareyBachay.Models.Student", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("StudentId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("DOB")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("age")
-                        .HasColumnType("int");
-
-                    b.Property<string>("gender")
+                    b.Property<string>("Gender")
                         .IsRequired()
                         .HasColumnType("nvarchar(1)");
 
-                    b.Property<string>("name")
+                    b.Property<string>("StudentName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("id");
+                    b.HasKey("StudentId");
 
                     b.ToTable("Student");
                 });

@@ -35,7 +35,7 @@ namespace HamareyBachay.Controllers
         // POST: Students/SearchResult
         public async Task<IActionResult> SearchResult(String name)
         {
-            return View("Index", await _context.Student.Where(s => s.name.Contains(name)).ToListAsync());
+            return View("Index", await _context.Student.Where(s => s.StudentName.Contains(name)).ToListAsync());
         }
 
         // GET: Students/Details/5
@@ -47,7 +47,7 @@ namespace HamareyBachay.Controllers
             }
 
             var student = await _context.Student
-                .FirstOrDefaultAsync(m => m.id == id);
+                .FirstOrDefaultAsync(m => m.StudentId == id);
             if (student == null)
             {
                 return NotFound();
@@ -69,7 +69,7 @@ namespace HamareyBachay.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,name,gender,DOB,age")] Student student)
+        public async Task<IActionResult> Create([Bind("StudentId,StudentName,Gender,DOB,Age")] Student student)
         {
             if (ModelState.IsValid)
             {
@@ -103,9 +103,9 @@ namespace HamareyBachay.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,name,gender,DOB,age")] Student student)
+        public async Task<IActionResult> Edit(int id, [Bind("StudentId,StudentName,Gender,DOB,Age")] Student student)
         {
-            if (id != student.id)
+            if (id != student.StudentId)
             {
                 return NotFound();
             }
@@ -119,7 +119,7 @@ namespace HamareyBachay.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!StudentExists(student.id))
+                    if (!StudentExists(student.StudentId))
                     {
                         return NotFound();
                     }
@@ -143,7 +143,7 @@ namespace HamareyBachay.Controllers
             }
 
             var student = await _context.Student
-                .FirstOrDefaultAsync(m => m.id == id);
+                .FirstOrDefaultAsync(m => m.StudentId == id);
             if (student == null)
             {
                 return NotFound();
@@ -166,7 +166,7 @@ namespace HamareyBachay.Controllers
 
         private bool StudentExists(int id)
         {
-            return _context.Student.Any(e => e.id == id);
+            return _context.Student.Any(e => e.StudentId == id);
         }
     }
 }

@@ -14,5 +14,6 @@ namespace HamareyBachay.Data
         {
         }
         public DbSet<HamareyBachay.Models.Student> Student { get; set; }
+        public DbSet<HamareyBachay.Models.Course> Course { get; set; }
     }
 }
