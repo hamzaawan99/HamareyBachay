@@ -9,7 +9,10 @@ namespace HamareyBachay.Models
 {
     public class Course
     {
+        [Key]
         public int CourseId { get; set; }
+        
+        [Required]
         public string CourseName { get; set; }
         
         [DataType(DataType.Date)]
@@ -19,11 +22,14 @@ namespace HamareyBachay.Models
         public DateTime EndDate { get; set; }
 
         //[InverseProperty("Course")]
-        //public List<Student> Students { get; set; }
+        public ICollection<Student> Students { get; set; }
+
+        public ICollection<Class> Classes { get; set; }
 
         public Course()
         {
-
+            this.Students = new HashSet<Student>();
+            this.Classes = new HashSet<Class>();
         }
     }
 }

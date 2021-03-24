@@ -13,7 +13,15 @@ namespace HamareyBachay.Data
             : base(options)
         {
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Class>()
+                .HasKey(c => new { c.ClassId, c.SectionId });
+        }
         public DbSet<HamareyBachay.Models.Student> Student { get; set; }
         public DbSet<HamareyBachay.Models.Course> Course { get; set; }
+        public DbSet<HamareyBachay.Models.Class> Class { get; set; }
     }
 }

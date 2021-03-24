@@ -3,30 +3,31 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HamareyBachay.Data.Migrations
 {
-    public partial class addedcourse : Migration
+    public partial class AddedStudent : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Course",
+                name: "Student",
                 columns: table => new
                 {
-                    CourseId = table.Column<int>(nullable: false)
+                    StudentId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CourseName = table.Column<string>(nullable: true),
-                    StartDate = table.Column<DateTime>(nullable: false),
-                    EndDate = table.Column<DateTime>(nullable: false)
+                    StudentName = table.Column<string>(nullable: false),
+                    Gender = table.Column<string>(nullable: false),
+                    DOB = table.Column<DateTime>(nullable: false),
+                    Age = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Course", x => x.CourseId);
+                    table.PrimaryKey("PK_Student", x => x.StudentId);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Course");
+                name: "Student");
         }
     }
 }
